@@ -9,40 +9,43 @@
 
 int NilMax2Tabel(void){
 
-    int *Elmt; // Pointer ke Integer (Array)
-    int i,j; // Counter
-    int n; // Jumlah Element pada Array
-    int max; // Nilai maximum suatu Element pada Array
-    int max2; // Nilai maximum ke 2 suatu Element pada Array
+    //kamus
+    int *T; // tabel array
+    int i; //counter
+    int n; //banyak inputan
+    int elmt; //isi tabel
+    int max1; //terbesar ke1
+    int max2; // terbesar ke2
 
-    Elmt = (int*)malloc(n*sizeof(int));
+    //algoritma
+    printf("Masukkan bilangan N: ");
+    scanf("%d", &n);
 
-    printf("Masukkan N : ");
-    scanf("%d",&n);
-
-    if (n <= 0){
-        printf("Masukkan Tidak boleh nol/negatif");
-    }
-    else {
-        for(i=0;i<n;i++){
-            printf("Masukkan data : ");
-            scanf("%d",Elmt+i);
-        }
-
-        max = Elmt[0];
-        max2 = 0;
-        for(i=1;i<n;i++){
-            if(max < Elmt[i]){
-                max = Elmt[i];
-                max2 = Elmt[0];
-            }
-            else if ((max2 < Elmt[i]) && (Elmt[i] != max)){
-                max2 = Elmt[i];
+    if(n<0){
+        printf("Bilangan harus positif");
+    }else{
+        T = (int*)malloc(n*(sizeof(int)));
+        for(i=0; i<n; i++){
+            printf("Masukkan nilai ke-%d = ", i);
+            scanf("%d", &elmt);
+            if(elmt>0){
+                T[i]=elmt;
+            }else{
+                i--;
             }
         }
-        printf("%d",max2);
-
-        free(Elmt);
+        max1 = T[0];
+        for (i=1; i<n; i++){
+            if (T[i] > max1 ){
+                max2 = max1;
+                max1 = T[i];
+            }else if(T[i]>max2 && T[i]<max1){
+                max2 = T[i];
+            }
+        }
+        printf("Bilangan terbesar kedua = %d", max2);
     }
+
     return 0;
 }
+
