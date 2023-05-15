@@ -3,37 +3,40 @@
 /*NIM: 24060122120028*/
 /*Tanggal : 11 Mei 2023 */
 /*Deskripsi : Mengurutkan secara ascending atau dari yang paling kecil ke paling besar*/
-#include <stdio.h>
 
-void swap(int *a, int *b) {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
-}
-
-void selectionSort(int array[], int size) {
-  for (int step = 0; step < size - 1; step++) {
-    int IMin = step;
-    for (int i = step + 1; i < size; i++) {
-      if (array[i] < array[IMin])
-        IMin = i;
-    }
-    swap(&array[IMin], &array[step]);
-  }
-}
-
-void printArray(int array[], int size) {
-  for (int i = 0; i < size; ++i) {
-    printf("%d  ", array[i]);
-  }
-  printf("\n");
-}
+#include<stdio.h>
+#include<stdlib.h>
 
 int main() {
-  int data[] = {20, 12, 10, 15, 2};
-  int size = sizeof(data) / sizeof(data[0]);
-  selectionSort(data, size);
-  printf("Sorted array in Acsending Order:\n");
-  printArray(data, size);
+    //kamus lokal
+    int T[10] = {4,6,2,8,1,10,5,9,3,7};
+    int n = 10;
+    int i,j;
+    int temp;
+
+    //algoritma
+    printf("Sebelum diurutkan: ");
+    for(i=0; i<n; i++) {
+        printf("%d ", T[i]);
+    }
+
+    // Bubble sort secara ascending
+    for(i=0; i<n-1; i++) {
+        for(j=0; j<n-i-1; j++) {
+            if(T[j] > T[j+1]) {
+                temp = T[j];
+                T[j] = T[j+1];
+                T[j+1] = temp;
+            }
+        }
+    }
+
+    printf("\n====================================");
+    printf("\nSetelah diurutkan secara ascending: ");
+    for(i=0; i<n; i++) {
+        printf("%d ", T[i]);
+    }
+
+    return 0;
 }
 
